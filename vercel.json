@@ -1,0 +1,14 @@
+{
+    "builds": [
+        {
+            "src": "abcd.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "abcd.py"
+        }
+    ]
+}
