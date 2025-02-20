@@ -4,12 +4,7 @@ from routes.chatbot_routes import router as chatbot_router
 
 app = FastAPI()
 
-# Mount the static folder for HTML and other static assets
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 # Mount the videos folder to serve video files
-app.mount("/videos1", StaticFiles(directory="videos1"), name="videos1")
-
 
 # Include the router from chatbot_routes.py
 app.include_router(chatbot_router)
