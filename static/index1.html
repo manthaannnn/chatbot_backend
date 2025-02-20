@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Chatbot Assistant with Video</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="./script1.js"></script>
+</head>
+<body>
+
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo"></div>
+        <span class="logo-text">Logo Chatbot</span>
+        <div class="spacer"></div>
+    </div>
+
+
+       <!-- Component -->
+       <div class="component">
+        <div class="info">
+            <h1>Evangelin / Position or Role</h1>
+            <p>Description or time</p>
+        </div>
+        <div class="actions">
+            <div class="icons">
+                <span class="icon"><i class="fas fa-microphone"></i></span>
+            </div>
+            <button class="leave-btn">Leave</button>
+        </div>
+    </div>
+
+
+
+    <!-- chat section start -->
+
+    <div class="chat-wrapper">
+
+        <div id="container">
+            <!-- Start Chat Button -->
+            <button id="start-chat-btn" onclick="startChat()">Start Chat</button>
+    
+           
+    
+            <!-- Video Container on the Right -->
+            <div id="video-container">
+                <video id="response-video" autoplay></video>
+            </div>
+
+
+             <!-- Chatbot Container on the Left -->
+             <div id="chat-container">
+                <div id="chat-box">
+                    <!-- Initial welcome message is hidden until startChat() is triggered -->
+                    <div class="bot-message message" id="welcome-message" style="display: none;">
+                        <p>Welcome to Step Consultancy! Please select your preferred language. </p>
+                    </div>
+                </div>
+    
+                <div id="input-container">
+                    <input type="text" id="user-input" placeholder="Type your message here...">
+                    <button id="send-btn" onclick="sendMessageFromInput()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                    <button id="mic-btn" onclick="startRecognition()">🎤</button>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- Link to External JavaScript -->
+    <script src="script1.js"></script>
+</body>
+</html>

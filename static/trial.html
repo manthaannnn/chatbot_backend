@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Chatbot Assistant with Video</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Start Chat Button -->
+        <button id="start-chat-btn" onclick="startChat()">Start Chat</button>
+
+        <!-- Chatbot Container on the Left -->
+        <div id="chat-container">
+            <div id="chat-box">
+                <!-- Initial welcome message is hidden until startChat() is triggered -->
+                <div class="bot-message message" id="welcome-message" style="display: none;">
+                    <p>Welcome to Dominos! I can help you order your favorite pizza. Please select your preferred language. </p>
+                </div>
+            </div>
+
+            <div id="input-container">
+                <input type="text" id="user-input" placeholder="Type your message here...">
+                <button id="send-btn" onclick="sendMessageFromInput()">Send</button>
+                <button id="mic-btn" onclick="startRecognition()">🎤</button>
+            </div>
+            
+        </div>
+
+        <!-- Video Container on the Right -->
+        <div id="video-container">
+            <video id="response-video" autoplay></video>
+        </div>
+    </div>
+
+    <!-- Link to External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
