@@ -4,19 +4,19 @@ let registrationDetails = {};  // Temporary storage for walk-in registration det
 
 // Map video commands to the video URLs
 const videoMap = {
-    "abcd": "../videos1/first.mp4",
-    "language_selection": "../videos1/second.mp4",
-    "production_services": "../videos1/third.mp4",
-    "digital_services": "../videos1/third.mp4",
+    // "abcd": "../videos1/first.mp4",
+    // "language_selection": "../videos1/second.mp4",
+    // "production_services": "../videos1/third.mp4",
+    // "digital_services": "../videos1/third.mp4",
 
-    "four": "../videos1/four.mp4",
-    "five": "../videos/five.mp4",
-    "production_services1": "../videos/third.mp4",
-    "three": "../videos/third.mp4",
-    "confirmation": "/videos/last.mp4",
-    "appointment_confirmed": "/videos/appointment_confirmed.mp4",
-    "doctor_selection": "/videos/doctor_selection.mp4",
-    "upi_payment": "/videos/upi.mp4"
+    // "four": "../videos1/four.mp4",
+    // "five": "../videos/five.mp4",
+    // "production_services1": "../videos/third.mp4",
+    // "three": "../videos/third.mp4",
+    // "confirmation": "/videos/last.mp4",
+    // "appointment_confirmed": "/videos/appointment_confirmed.mp4",
+    // "doctor_selection": "/videos/doctor_selection.mp4",
+    // "upi_payment": "/videos/upi.mp4"
 };
 
 // async function playVideosSequentially() {
