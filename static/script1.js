@@ -4,19 +4,19 @@ let registrationDetails = {};  // Temporary storage for walk-in registration det
 
 // Map video commands to the video URLs
 const videoMap = {
-    // "abcd": "../videos1/first.mp4",
-    // "language_selection": "../videos1/second.mp4",
-    // "production_services": "../videos1/third.mp4",
-    // "digital_services": "../videos1/third.mp4",
+    "abcd": "../videos1/first.mp4",
+    "language_selection": "../videos1/second.mp4",
+    "production_services": "../videos1/third.mp4",
+    "digital_services": "../videos1/third.mp4",
 
-    // "four": "../videos1/four.mp4",
-    // "five": "../videos/five.mp4",
-    // "production_services1": "../videos/third.mp4",
-    // "three": "../videos/third.mp4",
-    // "confirmation": "/videos/last.mp4",
-    // "appointment_confirmed": "/videos/appointment_confirmed.mp4",
-    // "doctor_selection": "/videos/doctor_selection.mp4",
-    // "upi_payment": "/videos/upi.mp4"
+    "four": "../videos1/four.mp4",
+    "five": "../videos/five.mp4",
+    "production_services1": "../videos/third.mp4",
+    "three": "../videos/third.mp4",
+    "confirmation": "/videos/last.mp4",
+    "appointment_confirmed": "/videos/appointment_confirmed.mp4",
+    "doctor_selection": "/videos/doctor_selection.mp4",
+    "upi_payment": "/videos/upi.mp4"
 };
 
 // async function playVideosSequentially() {
@@ -204,7 +204,7 @@ async function sendMessage(userMessage) {
                     playVideo('six')
                 }
                 else{
-                    displayMessage("Please select option from available time slots")
+                    displayMessage("Please select option from available time")
                 }
         }
     } catch (error) {
@@ -212,51 +212,6 @@ async function sendMessage(userMessage) {
         console.error("Error:", error);
     }
 }
-
-function displayButtons(options, step) {
-    const chatBox = document.getElementById("chat-box");
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
-
-    options.forEach(option => {
-        const button = document.createElement("button");
-        button.innerText = option;
-        button.classList.add("option-btn");
-        button.onclick = () => sendMessage(option, step);
-        buttonContainer.appendChild(button);
-    });
-
-    chatBox.appendChild(buttonContainer);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-async function sendMessage(userMessage, step) {
-    displayMessage(userMessage, "user");
-
-    switch (step) {
-        case 0:
-            displayButtons(["English", "Hindi"], 1);
-            break;
-
-        case 1:
-            displayButtons(["Step Digital", "Step Production", "Step Tech"], 2);
-            break;
-
-        case 2:
-            displayButtons(["Book Appointment", "More Info"], 3);
-            break;
-
-        case 3:
-            displayButtons(["Monday 11:00 AM", "Tuesday 2:00 PM"], 4);
-            break;
-
-        case 4:
-            displayMessage("Appointment confirmed! 🎉", "bot");
-            playVideo("appointment_confirmed");
-            break;
-    }
-}
-
 
 async function fetchResponse(url, data) {
     const response = await fetch(url, {
