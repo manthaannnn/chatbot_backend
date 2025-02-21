@@ -4,19 +4,19 @@ let registrationDetails = {};  // Temporary storage for walk-in registration det
 
 // Map video commands to the video URLs
 const videoMap = {
-    "abcd": "../videos1/first.mp4",
-    "language_selection": "../videos1/second.mp4",
-    "production_services": "../videos1/third.mp4",
-    "digital_services": "../videos1/third.mp4",
+    // "abcd": "../videos1/first.mp4",
+    // "language_selection": "../videos1/second.mp4",
+    // "production_services": "../videos1/third.mp4",
+    // "digital_services": "../videos1/third.mp4",
 
-    "four": "../videos1/four.mp4",
-    "five": "../videos/five.mp4",
-    "production_services1": "../videos/third.mp4",
-    "three": "../videos/third.mp4",
-    "confirmation": "/videos/last.mp4",
-    "appointment_confirmed": "/videos/appointment_confirmed.mp4",
-    "doctor_selection": "/videos/doctor_selection.mp4",
-    "upi_payment": "/videos/upi.mp4"
+    // "four": "../videos1/four.mp4",
+    // "five": "../videos/five.mp4",
+    // "production_services1": "../videos/third.mp4",
+    // "three": "../videos/third.mp4",
+    // "confirmation": "/videos/last.mp4",
+    // "appointment_confirmed": "/videos/appointment_confirmed.mp4",
+    // "doctor_selection": "/videos/doctor_selection.mp4",
+    // "upi_payment": "/videos/upi.mp4"
 };
 
 // async function playVideosSequentially() {
@@ -105,17 +105,28 @@ async function sendMessage(userMessage) {
 
     try {
         switch (step) {
+
             case 0:
                 botResponse = await fetchResponse("/select_lang", { user_string: userMessage });
-                displayMessage(`We provide 3 services: 
-                    <ul>
-                      <li>Step Digital</li>
-                      <li>Step Production</li>
-                      <li>Step Tech</li>
-                    </ul>`, "bot");
-                playVideo("language_selection");
-                step = 1;
+            
+                if (botResponse.selected_language === "English") {
+                    displayMessage(`We provide 3 services: 
+                        <ul>
+                          <li>Step Digital</li>
+                          <li>Step Production</li>
+                          <li>Step Tech</li>
+                        </ul>`, "bot");
+                    playVideo("language_selection");
+                    step = 1;
+                } else if (botResponse.selected_language === "Hindi") {
+                    displayMessage("Sorry, we are still working on that flow.", "bot");
+                    step = 0;
+                } else {
+                    displayMessage("Please select a valid language (English/Hindi).", "bot");
+                    step = 0;
+                }
                 break;
+            
             case 1:
                 botResponse = await fetchResponse("/select_type", { user_string: userMessage });
 
@@ -177,13 +188,10 @@ async function sendMessage(userMessage) {
                     step=4
 
                 }
-                else if(botResponse.name ==='No'){
+                else {
                     displayMessage("How else can i help you?")
                 }
-                else{
-                    displayMessage("Please select appropriate option1")
-                    step=3;
-                }
+
 
             case 4:
                 botResponse = await fetchResponse("/time_slot", { user_string: userMessage });
@@ -196,7 +204,7 @@ async function sendMessage(userMessage) {
                     playVideo('six')
                 }
                 else{
-                    displayMessage("Please select appropriate option2")
+                    displayMessage("Please select option from available time slots")
                 }
         }
     } catch (error) {
@@ -204,6 +212,51 @@ async function sendMessage(userMessage) {
         console.error("Error:", error);
     }
 }
+
+function displayButtons(options, step) {
+    const chatBox = document.getElementById("chat-box");
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+
+    options.forEach(option => {
+        const button = document.createElement("button");
+        button.innerText = option;
+        button.classList.add("option-btn");
+        button.onclick = () => sendMessage(option, step);
+        buttonContainer.appendChild(button);
+    });
+
+    chatBox.appendChild(buttonContainer);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage(userMessage, step) {
+    displayMessage(userMessage, "user");
+
+    switch (step) {
+        case 0:
+            displayButtons(["English", "Hindi"], 1);
+            break;
+
+        case 1:
+            displayButtons(["Step Digital", "Step Production", "Step Tech"], 2);
+            break;
+
+        case 2:
+            displayButtons(["Book Appointment", "More Info"], 3);
+            break;
+
+        case 3:
+            displayButtons(["Monday 11:00 AM", "Tuesday 2:00 PM"], 4);
+            break;
+
+        case 4:
+            displayMessage("Appointment confirmed! 🎉", "bot");
+            playVideo("appointment_confirmed");
+            break;
+    }
+}
+
 
 async function fetchResponse(url, data) {
     const response = await fetch(url, {
